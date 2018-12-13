@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from ddtrace import patch_all
+patch_all()
 
 from flask import Flask
 from flask_login import LoginManager

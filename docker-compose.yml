@@ -1,5 +1,15 @@
 version: '2'
 services:
+  ddagent:
+    container_name: ddagent
+    image: datadog/docker-dd-agent
+    environment:
+      - DD_APM_ENABLED=true
+      - DD_BIND_HOST=0.0.0.0
+      - DD_API_KEY=bf09b615f016c4dd0ed84a9cd1677f1c
+    ports:
+      - "8126:8126"
+
   todolist:
     container_name: todolist
     image: todolist
@@ -10,6 +20,7 @@ services:
       - "8000:8000"
     depends_on:
       - migration
+      - ddagent
 
   migration:
     container_name: migration
