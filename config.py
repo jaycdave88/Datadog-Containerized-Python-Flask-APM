@@ -10,7 +10,6 @@ def create_sqlite_uri(db_name):
 
 
 class Config(object):
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret key, just for testing'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_RECORD_QUERIES = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False

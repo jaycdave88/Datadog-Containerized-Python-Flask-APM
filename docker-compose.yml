@@ -2,26 +2,27 @@ version: '2'
 services:
   ddagent:
     container_name: ddagent
-    image: datadog/docker-dd-agent
+    image: datadog/agent:latest
     environment:
       - DD_APM_ENABLED=true
+      - NON_LOCAL_TRAFFIC=true
       - DD_BIND_HOST=0.0.0.0
-      - DD_API_KEY=bf09b615f016c4dd0ed84a9cd1677f1c
+      - DD_API_KEY=[DD_API_KEY]
     ports:
-      - "8126:8126"
-
+      - "8126:8126/tcp"
   todolist:
     container_name: todolist
     image: todolist
     # restart: always
     env_file: .env
+    environment: 
+      - DATADOG_TRACE_AGENT_HOSTNAME=ddagent
     command: gunicorn todolist:app -w 2 -b :8000
     ports:
       - "8000:8000"
     depends_on:
       - migration
       - ddagent
-
   migration:
     container_name: migration
     build: .
