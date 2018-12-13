@@ -4,3 +4,6 @@
 **Run**
 >1. `docker-compose build`
 >2. `docker-compose up` 
+
+**How to use**
+> Go to localhost:8000 and produce load by clicking around.
